@@ -20,7 +20,7 @@ module.exports = {
             })
         }
         else{
-           return res.json({'Message':'go to login page no token present'});
+            res.sendFile(__dirname+'/public/pages/login.html');
         }
     }
 }
