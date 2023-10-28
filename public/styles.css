@@ -1,0 +1,241 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  }
+  
+  .background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+  }
+  
+  .background-video::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1); /* Adjust the opacity to control the glass effect */
+    backdrop-filter: blur(10px); /* Adjust the blur intensity as needed */
+    z-index: -1;
+  }
+  
+  /* Rest of your styles */
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #121212; /* Dark blue background color */
+}
+
+.background-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    object-fit: cover;
+    z-index: -1;
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background: rgba(18, 18, 18, 0.85); /* Dark background with transparency for glass effect */
+    backdrop-filter: blur(10px); /* Glass effect blur */
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1rem 2rem;
+    z-index: 1;
+}
+
+.logo {
+    color: #7a00ff;
+    width: 20%
+}
+
+.nav-bar {
+    display: flex;
+    justify-content: space-evenly;
+    gap: 1rem;
+    width: 40%;
+    margin: 1px auto;
+}
+
+.nav-bar a {
+    color: #FFFFFF;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    font-weight: 500;
+    font-size: larger;
+    margin: 1px auto;
+}
+
+.nav-bar a:hover {
+    color: #3498db; /* Change color on hover */
+}
+
+/* CSS */
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+    width: 30%;
+}
+
+
+/* CSS */
+.button-85 {
+  padding: 0.6em 2em;
+  border: none;
+  outline: none;
+  color: rgb(255, 255, 255);
+  background: #111;
+  cursor: pointer;
+  position: relative;
+  z-index: 0;
+  border-radius: 10px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-85:before {
+  content: "";
+  background: linear-gradient(
+    45deg,
+    #ff0000,
+    #ff7300,
+    #fffb00,
+    #48ff00,
+    #00ffd5,
+    #002bff,
+    #7a00ff,
+    #ff00c8,
+    #ff0000
+  );
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  background-size: 400%;
+  z-index: -1;
+  filter: blur(5px);
+  -webkit-filter: blur(5px);
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  animation: glowing-button-85 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+
+@keyframes glowing-button-85 {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.button-85:after {
+  z-index: -1;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #222;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+}
+
+.space-invader {
+    /* Modify size here: */
+    --block-size: 5px;
+  
+    box-shadow: 0 0 0 var(--block-size) #7a00ff,
+    0 var(--block-size) 0 var(--block-size) #7a00ff,
+    calc(var(--block-size) * -2.5) calc(var(--block-size) * 1.5) 0 calc(var(--block-size) * .5) #7a00ff,
+    calc(var(--block-size) * 2.5) calc(var(--block-size) * 1.5) 0 calc(var(--block-size) * .5) #7a00ff,
+    calc(var(--block-size) * -3) calc(var(--block-size) * -3) 0 0 #7a00ff,
+    calc(var(--block-size) * 3) calc(var(--block-size) * -3) 0 0 #7a00ff,
+    calc(var(--block-size) * -2) calc(var(--block-size) * -2) 0 0 #7a00ff,
+    calc(var(--block-size) * 2) calc(var(--block-size) * -2) 0 0 #7a00ff,
+    calc(var(--block-size) * -3) calc(var(--block-size) * -1) 0 0 #7a00ff,
+    calc(var(--block-size) * -2) calc(var(--block-size) * -1) 0 0 #7a00ff,
+    calc(var(--block-size) * 2) calc(var(--block-size) * -1) 0 0 #7a00ff,
+    calc(var(--block-size) * 3) calc(var(--block-size) * -1) 0 0 #7a00ff,
+    calc(var(--block-size) * -4) 0 0 0 #7a00ff,
+    calc(var(--block-size) * -3) 0 0 0 #7a00ff,
+    calc(var(--block-size) * 3) 0 0 0 #7a00ff,
+    calc(var(--block-size) * 4) 0 0 0 #7a00ff,
+    calc(var(--block-size) * -5) var(--block-size) 0 0 #7a00ff,
+    calc(var(--block-size) * -4) var(--block-size) 0 0 #7a00ff,
+    calc(var(--block-size) * 4) var(--block-size) 0 0 #7a00ff,
+    calc(var(--block-size) * 5) var(--block-size) 0 0 #7a00ff,
+    calc(var(--block-size) * -5) calc(var(--block-size) * 2) 0 0 #7a00ff,
+    calc(var(--block-size) * 5) calc(var(--block-size) * 2) 0 0 #7a00ff,
+    calc(var(--block-size) * -5) calc(var(--block-size) * 3) 0 0 #7a00ff,
+    calc(var(--block-size) * -3) calc(var(--block-size) * 3) 0 0 #7a00ff,
+    calc(var(--block-size) * 3) calc(var(--block-size) * 3) 0 0 #7a00ff,
+    calc(var(--block-size) * 5) calc(var(--block-size) * 3) 0 0 #7a00ff,
+    calc(var(--block-size) * -2) calc(var(--block-size) * 4) 0 0 #7a00ff,
+    calc(var(--block-size) * -1) calc(var(--block-size) * 4) 0 0 #7a00ff,
+    var(--block-size) calc(var(--block-size) * 4) 0 0 #7a00ff,
+    calc(var(--block-size) * 2) calc(var(--block-size) * 4) 0 0 #7a00ff;
+    background: #7a00ff;
+    width: var(--block-size);
+    height: var(--block-size);
+    overflow: hidden;
+  }
+
+  @keyframes rainbowMoveText {
+    0% {
+        color: violet;
+        background-position: 0% 0;
+        right: 100%;
+    }
+    100% {
+        color: red;
+        background-position: 200% 0;
+        right: -100%;
+    }
+}
+
+.moving-text {
+    position: absolute;
+    top: 70%;
+    right: -100%; /* Initially position the text outside the screen on the left */
+    white-space: nowrap;
+    font-size: 32px; /* Adjust font size as needed */
+    background-image: linear-gradient(
+        to Right,
+        #ff0000,
+        #ff7300,
+        #fffb00,
+        #48ff00,
+        #00ffd5,
+        #002bff,
+        #7a00ff,
+        #ff00c8,
+        #ff0000
+      );
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
+    animation: rainbowMoveText 8s linear infinite; /* Combined animation for color change and text movement */
+}
