@@ -1,26 +1,23 @@
 const jwt = require('jsonwebtoken');
 
-const secretKeyUser = process.env.SECRET_KEY_USER;
-const secretKeyAdmin = process.env.SECRET_KEY_ADMIN;
+const secretKey = process.env.SECRET_KEY;
 
 
 module.exports = {
-    createJWT: (id, role) => {
-        return jwt.sign({id},(role === 'Admin')?secretKeyAdmin:secretKeyUser,{
+    createJWT: (id) => {
+        return jwt.sign({id}, secretKey,{
             expiresIn:1000*60*60*24
         });
     },
     authenticateJWT: (req,res,next) => {
         const auth = req.cookies.jwt;
-        const role = req.body.role;
+        let flag = false;
         if(auth){
-            jwt.verify(auth,(role === 'Admin')?secretKeyAdmin:secretKeyUser, (err,key) => {
-                if(err) return res.json('Error in token');
-                else next();
+            jwt.verify(auth,secretKey, (err) => {
+                if(err) flag = false
+                else flag = true
             })
         }
-        else{
-            res.sendFile(__dirname+'/public/pages/login.html');
-        }
+        return flag;
     }
 }

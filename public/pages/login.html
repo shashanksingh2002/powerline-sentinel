@@ -1,11 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-</head>
-<body>
-    Login
-</body>
+<html lang="en" dir="ltr">
+   <head>
+      <meta charset="utf-8">
+      <title>Login</title>
+      <link rel="stylesheet" href="../style/login.css">
+   </head>
+   <body>
+      <div class="wrapper">
+         <div class="title">
+            Login
+         </div>
+         <form class="login">
+            <div class="field">
+               <input type="email" required name="email">
+               <label>Email Address</label>
+            </div>
+            <div class="field">
+               <input type="password" required name="password">
+               <label>Password</label>
+            </div>
+            <div class="content">
+               <div class="pass-link">
+                  <a href="#">Forgot password?</a>
+               </div>
+            </div>
+            <div class="field">
+               <input type="submit" value="Login">
+            </div>
+            <div class="signup-link">
+               Not a member? <a href="/signup">Signup now</a>
+            </div>
+         </form>
+         <div class="message"></div>
+      </div>
+      <script src="../src/login.js"></script>
+   </body>
 </html>
