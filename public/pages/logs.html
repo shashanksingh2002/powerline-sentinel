@@ -4,8 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Logs</title>
+    <style>
+
+        .logs {
+            font-family: Arial, Helvetica, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table{
+            margin: 2rem auto
+        }
+
+        .logs td, .logs th {
+        border: 1px solid #ddd;
+        padding: 8px;
+        }
+
+        .logs tr:nth-child(even){background-color: #f2f2f2;}
+
+        .logs tr:hover {background-color: #ddd;}
+
+        .logs th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #04AA6D;
+        color: white;
+        }
+    </style>
 </head>
 <body>
-    Logs
+    <h1 style="text-align: center;">Logs Table</h1>
+    <div class="logs">
+
+    </div>
+    <script src="../src/logs.js"></script>
 </body>
 </html>

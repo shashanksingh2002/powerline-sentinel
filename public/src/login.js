@@ -19,7 +19,7 @@ login.addEventListener('submit' , e => {
             message.innerHTML = result.Message;
         }
         else{
-            window.location.href = 'http://localhost:8080/home';
+            window.location.href = '/home';
         }
     })
     .catch(err => console.error(err))

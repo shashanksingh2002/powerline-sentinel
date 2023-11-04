@@ -14,11 +14,11 @@
         <div class="user-details">
           <div class="input-box">
             <span class="details">First Name</span>
-            <input type="text" placeholder="First Name" name="fname" required>
+            <input type="text" placeholder="First Name" name="fname" minlength="3" maxlength="12" required>
           </div>
           <div class="input-box">
             <span class="details">Last Name</span>
-            <input type="text" placeholder="Last Name" name="lname" required>
+            <input type="text" placeholder="Last Name" name="lname" minlength="3" maxlength="12" required>
           </div>
           <div class="input-box">
             <span class="details">Email</span>
@@ -26,15 +26,15 @@
           </div>
           <div class="input-box">
             <span class="details">Phone Number</span>
-            <input type="tel" placeholder="Enter your number" name="ph" required>
+            <input type="tel" placeholder="Enter your number" name="ph" minlength="10" maxlength="10" required/>
           </div>
           <div class="input-box">
             <span class="details">Password</span>
-            <input type="password" placeholder="Enter your password" name="password" required>
+            <input type="password" class="password" placeholder="Enter your password" name="password" minlength="6" maxlength="18" required>
           </div>
           <div class="input-box">
             <span class="details">Confirm Password</span>
-            <input type="password" placeholder="Confirm your password" required>
+            <input type="password" class="cpassword" placeholder="Confirm your password" required name="cpassword" minlength="6" maxlength="18">
           </div>
         </div>
         <div class="gender-details">

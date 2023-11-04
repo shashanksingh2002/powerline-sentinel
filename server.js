@@ -1,5 +1,8 @@
 require('./envloader')()
 
+const fs = require('fs')
+const path = require('path')
+const nodemailer = require('nodemailer')
 const express = require('express')
 const app = express()
 const cors = require('cors')
@@ -11,6 +14,7 @@ const { connectToDb, checkJWT, deleteJWT } = require('./database/db.js');
 const { userLogin } = require('./services/userlogin.js')
 const { userSignUp } = require('./services/usersignup.js')
 const { authenticateJWT } = require('./middlewares/jwt.js')
+const admin = require('firebase-admin');
 const PORT = process.env.PORT || 8080
 
 //Middlewares
@@ -26,7 +30,7 @@ app.use(
 app.use(
     express.urlencoded({
         extended: true,
-        limit: '2mb',
+        limit: '5mb',
         parameterLimit: 1000000,
     }),
 )
@@ -39,6 +43,28 @@ app.use(cookieParser());
 app.use(express.json())
 app.use(express.static(__dirname+'/public'));
 
+
+// Enable Content Security Policy
+app.use(
+    helmet.contentSecurityPolicy({
+      directives: {
+        scriptSrc: ["'self'", "https://unpkg.com"],
+        imgSrc: ["'self'", "data:", "https://tile.openstreetmap.org"],
+        // Add other directives as needed
+      },
+    })
+);
+
+const serviceAccount = require('./firebase.json')
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: 'https://ps-test-265bf-default-rtdb.firebaseio.com/' // Replace with your Firebase database URL
+});
+
+const db = admin.database();
+const ref = db.ref('/transformers');
+
 app.use('/logout', async (req,res,next) => {
     const ans = await deleteJWT(req.cookies.jwt)
     res.redirect('/')
@@ -46,11 +72,23 @@ app.use('/logout', async (req,res,next) => {
 
 app.post('/api/login', (req, res) => {
     try {
-        // Call the userLogin function
         const result = userLogin(req,res);
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Internal Server Error' }); // Handle errors
+    }
+});
+
+app.delete('/api/deleteFile', (req, res) => {
+    const filePath = path.join(__dirname, 'data.json');
+
+    // Check if the file exists
+    if (fs.existsSync(filePath)) {
+        // Delete the file
+        fs.unlinkSync(filePath);
+        res.json({ message: 'File deleted successfully' });
+    } else {
+        res.status(404).json({ error: 'File not found' });
     }
 });
 
@@ -64,6 +102,16 @@ app.post('/api/signup', (req, res) => {
     }
 });
 
+app.post('/api/maps', (req,res) => {
+    ref.once('value', (snapshot) => {
+        const data = snapshot.val();
+        res.json(data); // Send the data back as a JSON response
+      })
+      .catch((error) => {
+        console.error('Error reading data:', error);
+        res.status(500).json({ error: 'Internal Server Error' }); // Handle errors
+      });
+})
 
 app.use(async (req,res,next) =>{
     if (req.path === '/login' || req.path === '/signup' || req.path === '/') {
